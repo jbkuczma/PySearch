@@ -5,7 +5,6 @@ import webbrowser
 
 def main():
     parser = argparse.ArgumentParser(description="Search with your favorite browser and options")
-    parser.add_argument("browser", help="Browser of choice")
     parser.add_argument("search", help="What you would like searched. *Quotes must be used*")
     args = parser.parse_args()
     search(args.search)
