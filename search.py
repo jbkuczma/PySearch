@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Search with your favorite browser and options")
+    parser = argparse.ArgumentParser(description="Quickly search Wikipedia")
     parser.add_argument("search", help="What you would like searched. *Quotes must be used*")
     args = parser.parse_args()
     search(args.search)
