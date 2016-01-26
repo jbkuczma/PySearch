@@ -1,6 +1,6 @@
 import argparse
-import webbrowser
-
+import urllib.request
+from bs4 import BeautifulSoup
 
 
 def main():
@@ -12,8 +12,12 @@ def main():
 
 def search(search):
     try:
-        search = search.replace(' ', '+')
-        webbrowser.open_new("https://www.google.com/#q="+search)
+        response = urllib.request.urlopen("https://en.wikipedia.org/wiki/%s" % search)
+        data = response.read()
+        response.close()
+        soup = BeautifulSoup(data,"html.parser")
+        content = soup.find('div', id="bodyContent").p #gets first paragraph. would like to eventually get leading paragraphs above 'contents' box
+        print(content.text)
     except Exception as e:
         print(e)
 
