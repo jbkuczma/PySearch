@@ -12,14 +12,22 @@ def main():
 
 def search(search):
     try:
+        search = search.replace(' ','_')
         response = urllib.request.urlopen("https://en.wikipedia.org/wiki/%s" % search)
         data = response.read()
         response.close()
         soup = BeautifulSoup(data,"html.parser")
-        content = soup.find('div', id="bodyContent").p #gets first paragraph. would like to eventually get leading paragraphs above 'contents' box
-        print(content.text)
+        i = 0
+        for i in range(len(soup.find_all('p'))):
+            if(len(soup.findAll('p')[i].contents) == 0):
+                break
+            else:
+                content = soup.findAll('p')[i]
+                print(content.text)
+                i+=1
     except Exception as e:
         print(e)
+
 
 if __name__ == '__main__':
     main()
