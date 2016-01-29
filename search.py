@@ -23,7 +23,7 @@ def search(search):
                 break
             else:
                 content = soup.findAll('p')[i]
-                print(content.text)
+                print(content.text + '\n')
                 i+=1
     except Exception as e:
         print(e)
